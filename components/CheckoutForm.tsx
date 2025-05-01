@@ -33,7 +33,7 @@ import { clearCart } from "@/cartSlice";
 import { Spinner } from "./ui/spinner";
 import { Session } from "next-auth";
 
-const CheckoutForm = ({ session }: { session: Session }) => {
+const CheckoutForm = ({ session }: { session: Session | null }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const cart = useAppSelector((state) => state.cart.cartItems);
   const [isLoading, setIsLoading] = useState(false);
