@@ -1,3 +1,4 @@
+import { ProductProps } from "./app/[category]/[product]/page";
 import supabase from "./supabase";
 
 // fetch products according to category appeared in url parameter e.g. headphones or speakers or earphones
@@ -15,7 +16,9 @@ export const fetchProducts = async (params: Promise<{ category: string }>) => {
 };
 
 // fetch a product according to slug name ppeared in url parameter e.g. zx7-speaker
-export const fetchProduct = async (params: Promise<{ product: string }>) => {
+export const fetchProduct = async (
+  params: Promise<{ product: ProductProps }>
+) => {
   const { product } = await params;
   const { data, error } = await supabase
     .from("products")

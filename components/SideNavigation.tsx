@@ -4,13 +4,13 @@ import { signOut } from "next-auth/react"; // i use that way as client coponent
 import OrderCard from "./OrderCard";
 import { Session } from "next-auth";
 
-const SideNavigation = ({ session }: { session: Session }) => {
+const SideNavigation = ({ session }: { session: Session | null }) => {
   const [activeTab, setActiveTab] = useState("account");
 
   const renderContent = () => {
     switch (activeTab) {
       case "account":
-        return <h4>Hello, {session.user.name} </h4>;
+        return <h4>Hello, {session?.user.name} </h4>;
       case "orders":
         return (
           <main>
