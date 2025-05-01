@@ -2,6 +2,18 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { createUser, getUser } from "./services";
 
+// Extend the Session type
+declare module "next-auth" {
+  interface Session {
+    user: {
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      userId: string | number; // Add custom field here
+    };
+  }
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
   callbacks: {
