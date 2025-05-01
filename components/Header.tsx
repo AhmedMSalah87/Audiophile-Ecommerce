@@ -3,7 +3,6 @@
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import CartIcon from "@/components/CartIcon";
-import ProfileLogo from "./ProfileLogo";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import HamburgerMenu from "./HamburgerMenu";

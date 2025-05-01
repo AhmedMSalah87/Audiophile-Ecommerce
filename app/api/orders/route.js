@@ -21,11 +21,12 @@ export async function POST(request) {
         return { orderID, ...item };
       });
 
-      const { error } = await supabase.from("orderItems").insert(orderItems);
+      await supabase.from("orderItems").insert(orderItems);
     }
 
     return NextResponse.json({ message: "Data received!" });
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
       { error: "Something went wrong!" },
       { status: 500 }

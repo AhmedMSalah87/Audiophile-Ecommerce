@@ -22,7 +22,7 @@ const CartIcon = () => {
         className="cursor-pointer"
         src={cart}
         alt="cart"
-        onClick={(e) => {
+        onClick={() => {
           toggleCart();
           toggleOverlay();
         }}

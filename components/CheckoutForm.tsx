@@ -153,7 +153,7 @@ const CheckoutForm = ({ session }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newOrder),
       });
-      const data = await response.json();
+      await response.json();
       setOpenDialog(true);
     } catch (error) {
       console.error("Checkout failed:", error);

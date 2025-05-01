@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Header";
 import HeroContent from "./HeroContent";
-import Background from "@/public/home/desktop/image-hero.jpg";
 
 const HeroSection = ({ profileLogo }: { profileLogo: React.ReactNode }) => {
   return (
