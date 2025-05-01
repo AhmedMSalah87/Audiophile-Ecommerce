@@ -22,10 +22,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async signIn({ user }) {
       try {
-        const existingUser = await getUser(user.email);
+        const existingUser = await getUser(user.email!);
 
         if (!existingUser) {
-          await createUser({ name: user.name, email: user.email });
+          await createUser({ name: user.name!, email: user.email! });
         }
         return true;
       } catch (error) {

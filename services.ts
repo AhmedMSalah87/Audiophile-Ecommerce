@@ -1,7 +1,7 @@
 import supabase from "./supabase";
 
 // fetch products according to category appeared in url parameter e.g. headphones or speakers or earphones
-export const fetchProducts = async (params) => {
+export const fetchProducts = async (params: Promise<{ category: string }>) => {
   const { category } = await params;
   const { data, error } = await supabase
     .from("products")
@@ -15,7 +15,7 @@ export const fetchProducts = async (params) => {
 };
 
 // fetch a product according to slug name ppeared in url parameter e.g. zx7-speaker
-export const fetchProduct = async (params) => {
+export const fetchProduct = async (params: Promise<{ product: string }>) => {
   const { product } = await params;
   const { data, error } = await supabase
     .from("products")
@@ -30,7 +30,7 @@ export const fetchProduct = async (params) => {
   return data;
 };
 
-export const getUser = async (email) => {
+export const getUser = async (email: string) => {
   const { data, error } = await supabase
     .from("users")
     .select("*")
@@ -45,7 +45,7 @@ export const getUser = async (email) => {
   return data;
 };
 
-export const createUser = async (newUser) => {
+export const createUser = async (newUser: { name: string; email: string }) => {
   const { data, error } = await supabase.from("users").insert([newUser]);
   // you must allow write policy als in supabase to create users
   if (error) {

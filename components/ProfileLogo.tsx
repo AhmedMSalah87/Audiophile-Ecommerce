@@ -15,13 +15,13 @@ const ProfileLogo = async () => {
     <Link href="/account">
       <Avatar>
         <img
-          src={session.user.image}
+          src={session.user.image ?? ""}
           alt="User Avatar"
           referrerPolicy="no-referrer"
         />
         <AvatarFallback>
           {session.user.name
-            .split(" ")
+            ?.split(" ")
             .map((w) => w[0])
             .join("")
             .toUpperCase()}

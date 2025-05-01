@@ -103,6 +103,8 @@ const CheckoutForm = ({ session }: { session: Session | null }) => {
     },
   });
 
+  type checkoutForm = z.infer<typeof formSchema>;
+
   const paymentMethod = form.watch("payment");
 
   const totalPrice = cart.reduce(
@@ -132,10 +134,10 @@ const CheckoutForm = ({ session }: { session: Session | null }) => {
     );
   }
 
-  const handleCheckoutSubmit = async (formData) => {
+  const handleCheckoutSubmit = async (formData: checkoutForm) => {
     setIsPending(true);
     const newOrder = {
-      userId: session.user.userId,
+      userId: session?.user.userId,
       items: cart.map((item) => {
         return {
           productID: item.id,
