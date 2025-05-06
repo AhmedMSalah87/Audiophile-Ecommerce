@@ -39,6 +39,7 @@ export const getUser = async (email: string) => {
     .select("*")
     .eq("email", email)
     .single();
+
   // you must allow read policy als in supabase to read users
   if (error) {
     console.error("Error fetching user:", error);
@@ -48,14 +49,22 @@ export const getUser = async (email: string) => {
   return data;
 };
 
-export const createUser = async (newUser: { name: string; email: string }) => {
-  const { data, error } = await supabase.from("users").insert([newUser]);
+export const createUser = async (newUser: {
+  name: string;
+  email: string;
+  password?: string;
+}) => {
+  const { data, error } = await supabase
+    .from("users")
+    .insert([newUser])
+    .select("id, name, email"); // to extract id,name,email of new user after created
+
   // you must allow write policy als in supabase to create users
   if (error) {
     console.log("Error creating user:", error);
   }
 
-  return data;
+  return data?.[0]; // Return the first (and only) inserted user as data is array of objects
 };
 
 export const ProductDescription = (description: string | undefined) => {

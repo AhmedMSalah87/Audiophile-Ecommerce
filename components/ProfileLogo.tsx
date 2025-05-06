@@ -14,18 +14,21 @@ const ProfileLogo = async () => {
   return session ? (
     <Link href="/account">
       <Avatar>
-        <img
-          src={session.user.image ?? ""}
-          alt="User Avatar"
-          referrerPolicy="no-referrer"
-        />
-        <AvatarFallback>
-          {session.user.name
-            ?.split(" ")
-            .map((w) => w[0])
-            .join("")
-            .toUpperCase()}
-        </AvatarFallback>
+        {session.user.image ? (
+          <img
+            src={session.user.image}
+            alt="User Avatar"
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          <AvatarFallback>
+            {session.user.name
+              ?.split(" ")
+              .map((w) => w[0])
+              .join("")
+              .toUpperCase()}
+          </AvatarFallback>
+        )}
       </Avatar>
     </Link>
   ) : (

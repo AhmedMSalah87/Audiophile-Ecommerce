@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
 import { createUser, getUser } from "./services";
+import bcrypt from "bcryptjs";
 
 // Extend the Session type
 declare module "next-auth" {
@@ -15,7 +17,28 @@ declare module "next-auth" {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Google],
+  providers: [
+    Google,
+    Credentials({
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      authorize: async (credentials) => {
+        const email = credentials?.email as string;
+        const password = credentials?.password as string;
+        const user = await getUser(email);
+        if (!user) {
+          throw new Error("Invalid Credentials");
+        }
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        if (!isValidPassword) {
+          throw new Error("Invalid Credentials");
+        }
+        return { id: user.id, name: user.name, email: user.email };
+      },
+    }),
+  ],
   callbacks: {
     async authorized({ auth }) {
       return !!auth; // middleware calls the auth function to check if the user is authenticated.

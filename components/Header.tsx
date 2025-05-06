@@ -37,7 +37,7 @@ const Header = ({
         <Logo />
         <NavLinks className="hidden lg:flex" />
         <div className="flex items-center gap-8">
-          {profileLogo}
+          <div>{profileLogo}</div>
           <CartIcon />
         </div>
       </nav>
