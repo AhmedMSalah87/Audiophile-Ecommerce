@@ -39,6 +39,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  trustHost: true,
   callbacks: {
     async authorized({ auth }) {
       return !!auth; // middleware calls the auth function to check if the user is authenticated.
