@@ -64,7 +64,7 @@ Audiophile is a sleek and modern e-commerce web app designed for audio gear love
 
 ## 📦 Notes
 
-> This is a front-end demo project and does not include real payment processing or user authentication.
+> This is a front-end demo project and does not include real payment processing.
 
 ---
 
