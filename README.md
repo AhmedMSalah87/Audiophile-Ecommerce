@@ -13,6 +13,7 @@ Audiophile is a sleek and modern e-commerce web app designed for audio gear love
 - **Responsive Design** – Optimized for desktop, tablet, and mobile.
 - **Modern UI/UX** – Minimalist and intuitive user interface.
 - **Fast Navigation** – Quick page transitions and smooth scrolling.
+- **Authentication** – using google provider and credentials in NextAuth.
 
 ### 🛍️ Product Pages
 
@@ -56,6 +57,8 @@ Audiophile is a sleek and modern e-commerce web app designed for audio gear love
 - **Hosting**: Vercel
 - **State Management**: Redux toolkit
 - **TypeScript**
+- **SQL database**: Supabase
+- **Authentication**: AuthJS v5
 
 ---
 
