@@ -44,7 +44,6 @@ export function SignIn() {
   });
 
   function handleSubmit(formData: loginForm) {
-    console.log(formData);
     signIn("credentials", {
       ...formData,
       redirect: false,
@@ -56,6 +55,7 @@ export function SignIn() {
         });
       } else {
         router.push("/");
+        router.refresh(); // make full reload of page to apply full http request to get session from cookies
       }
     });
   }

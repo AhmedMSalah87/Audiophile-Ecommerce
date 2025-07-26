@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "./ui/avatar";
 
 const ProfileLogo = async () => {
   const session = await auth();
-
+  console.log(session?.user);
   const icon = {
     height: "1.6rem",
     fill: "#cfcfcf",

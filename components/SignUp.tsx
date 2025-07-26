@@ -69,6 +69,7 @@ const SignUp = () => {
       //this function is very important to make register get into session in authjs
       await signIn("credentials", {
         ...formData,
+        redirect: false,
         redirectTo: "/",
       });
     } catch (error) {
