@@ -23,6 +23,7 @@ const ProfileLogo = async () => {
         ) : (
           <AvatarFallback>
             {session.user.name
+              // to extract initials of name
               ?.split(" ")
               .map((w) => w[0])
               .join("")

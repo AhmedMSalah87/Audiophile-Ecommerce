@@ -25,6 +25,8 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import googleIcon from "@/public/google.svg";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export const loginSchema = z.object({
   email: z.string().email({ message: "Invalid Email" }),
@@ -34,6 +36,7 @@ export const loginSchema = z.object({
 type loginForm = z.infer<typeof loginSchema>;
 
 export function SignIn() {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -44,18 +47,20 @@ export function SignIn() {
   });
 
   function handleSubmit(formData: loginForm) {
+    setIsLoading(true);
     signIn("credentials", {
       ...formData,
       redirect: false,
     }).then((response) => {
       console.log(response);
       if (response?.error) {
+        setIsLoading(false);
         toast("Invalid email or password.", {
           style: { background: "#900808", border: "none" },
         });
       } else {
         router.push("/");
-        router.refresh(); // make full reload of page to apply full http request to get session from cookies
+        router.refresh(); // make full reload of page to apply full http request to get session from server
       }
     });
   }
@@ -106,7 +111,16 @@ export function SignIn() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Sign in</Button>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="animate-spin" />
+                    Sending...
+                  </span>
+                ) : (
+                  "Sign in"
+                )}
+              </Button>
             </form>
           </Form>
           <div className="text-center my-2">Or</div>

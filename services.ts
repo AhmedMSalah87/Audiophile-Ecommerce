@@ -1,4 +1,5 @@
 import { ProductProps } from "./app/[category]/[product]/page";
+import { OrderProps } from "./components/OrderCard";
 import supabase from "./supabase";
 
 // fetch products according to category appeared in url parameter e.g. headphones or speakers or earphones
@@ -65,6 +66,31 @@ export const createUser = async (newUser: {
   }
 
   return data?.[0]; // Return the first (and only) inserted user as data is array of objects
+};
+
+export const getOrdersByUserId = async (
+  userId: string | number
+): Promise<OrderProps[] | null> => {
+  const { data, error } = await supabase
+    .from("orders")
+    .select(
+      `id, created_at, totalPrice, orderItems(product:products(name, image))`
+    )
+    .eq("userID", userId); // Optional filter by current user
+
+  if (error) {
+    console.log("Error getting order details:", error);
+  }
+
+  return (
+    // convert product array to object
+    data?.map((order) => ({
+      ...order,
+      orderItems: order.orderItems.map((item) => ({
+        product: Array.isArray(item.product) ? item.product[0] : item.product,
+      })),
+    })) ?? null
+  );
 };
 
 export const ProductDescription = (description: string | undefined) => {
