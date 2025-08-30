@@ -20,7 +20,8 @@ export type OrderProps = {
 };
 
 const OrderCard = ({ orders }: { orders: OrderProps[] | null }) => {
-  if (!orders || orders.length === 0) return <h4>no orders placed yet</h4>;
+  if (!orders || orders.length === 0)
+    return <h4 className="p-8">no orders placed yet</h4>;
 
   return orders?.map((orderItem) => (
     <div key={orderItem.id}>

@@ -26,7 +26,7 @@ const Header = ({
     <header
       className={cn("bg-foreground h-24 flex items-center relative", className)}
     >
-      <nav className="contain mx-auto flex items-center justify-between w-[90%] lg:w-full">
+      <nav className="relative contain mx-auto flex items-center justify-between w-[90%] lg:w-full">
         <Menu
           className="text-white lg:hidden cursor-pointer"
           onClick={() => {

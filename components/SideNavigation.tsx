@@ -10,6 +10,7 @@ import {
   Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import AccountDetails from "./AccountDetails";
 
 const SideNavigation = ({
   session,
@@ -23,15 +24,9 @@ const SideNavigation = ({
   const renderContent = () => {
     switch (activeTab) {
       case "account":
-        return <h4>Hello, {session?.user.name} </h4>;
+        return <AccountDetails session={session} />;
       case "orders":
-        return (
-          <main>
-            <OrderCard orders={orders} />
-          </main>
-        );
-      case "settings":
-        return <h4>Your Profile Settings</h4>;
+        return <OrderCard orders={orders} />;
       default:
         return null;
     }
@@ -64,16 +59,6 @@ const SideNavigation = ({
             Orders
           </button>
           <button
-            className={cn(
-              activeTab === "settings" ? "bg-primary text-white" : "",
-              "cursor-pointer flex items-center gap-2 w-full py-3 px-1.5 rounded-md"
-            )}
-            onClick={() => setActiveTab("settings")}
-          >
-            <Settings />
-            Settings
-          </button>
-          <button
             className="mt-auto cursor-pointer flex items-center gap-2 hover:text-primary"
             onClick={() => signOut({ callbackUrl: "/" })} // only works in using next client
           >
@@ -83,7 +68,9 @@ const SideNavigation = ({
         </div>
 
         {/* Content Area */}
-        <div className="bg-white overflow-y-scroll">{renderContent()}</div>
+        <div className="bg-white overflow-y-scroll rounded-md">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

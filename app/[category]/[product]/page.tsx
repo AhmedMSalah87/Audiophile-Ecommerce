@@ -9,6 +9,7 @@ import ProfileLogo from "@/components/ProfileLogo";
 import StoreInfo from "@/components/StoreInfo";
 import YouMayLike from "@/components/YouMayLike";
 import { fetchProduct } from "@/services";
+import { notFound } from "next/navigation";
 
 export interface ProductProps {
   id?: string | number;
@@ -41,6 +42,9 @@ const page = async ({
 }) => {
   const profileLogo = await ProfileLogo();
   const product = await fetchProduct(params);
+  if (!product) {
+    notFound();
+  }
 
   return (
     <>

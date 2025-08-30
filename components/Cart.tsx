@@ -48,7 +48,7 @@ const Cart = ({ onClose, iconRef }: CartProps) => {
 
   return (
     <div
-      className="bg-background absolute w-100 right-0 top-20 p-8 z-200 rounded-md"
+      className="bg-background absolute md:w-100 w-full right-0 top-24 p-8 z-200 rounded-md"
       ref={cartRef}
     >
       <div className="flex items-center justify-between mb-8">

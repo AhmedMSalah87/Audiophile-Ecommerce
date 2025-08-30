@@ -17,7 +17,7 @@ const CartIcon = () => {
   };
 
   return (
-    <div className="relative" ref={iconRef}>
+    <div ref={iconRef}>
       <Image
         className="cursor-pointer"
         src={cart}

@@ -104,3 +104,8 @@ export const ProductDescription = (description: string | undefined) => {
 
   return { firstParagraph, secondParagraph };
 };
+
+export const getCategories = async () => {
+  const { data } = await supabase.from("products").select("category");
+  return data?.map((item) => item.category);
+};
