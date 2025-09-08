@@ -18,20 +18,23 @@ const CartIcon = () => {
 
   return (
     <div ref={iconRef}>
-      <Image
-        className="cursor-pointer"
-        src={cart}
-        alt="cart"
-        onClick={() => {
-          toggleCart();
-          toggleOverlay();
-        }}
-      />
-      {cartItems.length > 0 && (
-        <div className="size-6 bg-primary rounded-full flex items-center justify-center absolute -top-[50%] -right-[50%] font-bold text-white">
-          <div>{cartItems.length}</div>
-        </div>
-      )}
+      <div className="relative">
+        <Image
+          className="cursor-pointer"
+          src={cart}
+          alt="cart"
+          onClick={() => {
+            toggleCart();
+            toggleOverlay();
+          }}
+        />
+        {cartItems.length > 0 && (
+          <div className="size-6 bg-primary rounded-full flex items-center justify-center absolute -top-[50%] -right-[50%] font-bold text-white">
+            <div>{cartItems.length}</div>
+          </div>
+        )}
+      </div>
+
       {isCartVisible && (
         <Cart onClose={() => setIsCartVisible(false)} iconRef={iconRef}></Cart>
       )}
